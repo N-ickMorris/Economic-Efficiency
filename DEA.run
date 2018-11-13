@@ -1,0 +1,23 @@
+##############
+#### if you're using NEOS then keep the following 4 lines of code commented out
+#### if you're solving this problem with an ampl license on your machine then uncomment these 4 lines of code
+##############
+
+# reset;  # clear the work space
+# model DEA.mod;  # load the model file
+# data DEA.dat;  # load the data file
+# option solver cplex;  # choose a solver
+	
+# solve for maximum efficiency of each decision making unit (DMU)
+for {d in DMUs}
+{
+	let dmu := d;  # assign a DMU to compute it's efficiency
+	
+	# solve the problem instance
+	solve;
+	option display_1col 1000;  # force the display to be in long format
+	display input_weight, output_weight;  # display the weights of each input and output
+}
+
+
+
